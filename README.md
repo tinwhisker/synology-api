@@ -80,11 +80,11 @@ from synology_api import filestation, downloadstation
 
 fl = filestation.FileStation('Synology Ip', 'Synology Port', 'Username', 'Password', secure=False, cert_verify=False, dsm_version=7, debug=True, otp_code=None)
 
-fl.get_info()
+print(fl.get_info())
 
 dwn = downloadstation.DownloadStation('Synology Ip', 'Synology Port', 'Username', 'Password', secure=False, cert_verify=False, dsm_version=7, debug=True, otp_code=None)
 
-dwn.get_info()
+print(dwn.get_info())
 
 ```
 
