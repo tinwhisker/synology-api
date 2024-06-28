@@ -576,7 +576,11 @@ class FileStation(base_api.BaseApi):
         api_name = 'SYNO.FileStation.Upload'
         info = self.file_station_list[api_name]
         api_path = info['path']
+        
         filename = os.path.basename(file_path)
+        dest_filename = os.path.basename(dest_path)
+        dest_filename = filename if len(dest_filename) is 0 else dest_filename
+        dest_path = os.path.dirname(dest_path)
 
         session = requests.session()
 
@@ -590,7 +594,7 @@ class FileStation(base_api.BaseApi):
                 'overwrite': str(overwrite).lower(),
             }
 
-            files = {'file': (filename, payload, 'application/octet-stream')}
+            files = {'file': (dest_filename, payload, 'application/octet-stream')}
 
             r = session.post(url, data=args, files=files, verify=verify, headers={"X-SYNO-TOKEN":self.session._syno_token})
 
